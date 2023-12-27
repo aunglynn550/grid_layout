@@ -81,21 +81,18 @@ h1 span{
 .layout-grid{
     --gap: 2rem;
     display: grid;
+    grid-auto-columns: 1fr;
     gap: var(--gap);
 }
 @media(min-width: 800px){
     .layout-grid{
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-areas: 
+        "... two   ..."
+        "one two   four"
+        "one three four"
+        "... three ..."
+        ;
     }
-}
-.layout-grid > * {
-    flex: 1;
-}
-
-.col{   
-    display: grid;
-    gap: var(--gap);
-    align-content: center; 
 }
 
 .card{
@@ -105,6 +102,21 @@ h1 span{
     padding: 2rem;
     box-shadow: 0 1rem 1.5rem -.5rem rgb(0 0 0 / .2);
 }
+
+.layout-grid > :nth-child(1){
+    grid-area: one;
+}
+.layout-grid > :nth-child(2){
+    grid-area: two;
+}
+.layout-grid > :nth-child(3){
+    grid-area: three;
+}
+.layout-grid > :nth-child(4){
+    grid-area: four;
+}
+
+
 .card__title{
     font-size: var(--fs-600);
     margin: 0;
